@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Barlow Condensed', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
+  }
+
+  html, body {
+    /* Evita rolagem horizontal acidental em telas estreitas (celular). */
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Foco visível consistente por teclado (acessibilidade). */
+  :focus-visible {
+    outline: 2px solid #FF3000;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum' on, 'zero' on;
+  }
+}
+
+/* Custom Scrollbar Clean Light */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF3000;
+}
+
+/* Technical CAD Grid Pattern (Light Theme) */
+.bg-cad-grid {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+}
+
+.bg-cad-grid-dense {
+  background-size: 10px 10px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 48, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 48, 0, 0.06) 1px, transparent 1px);
+}
+
+/* CAD Viewport Sticky on Desktop with sufficient vertical space */
+@media (min-width: 1024px) and (min-height: 700px) {
+  .cad-viewport-sticky {
+    position: sticky;
+    top: 5rem;
+    align-self: flex-start;
+  }
+}
+
+/* ITEM 2.1: Sliders Interativos (WebKit & Firefox) */
+.param-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #94a3b8 0%, #94a3b8 var(--slider-pct, 0%), #e2e8f0 var(--slider-pct, 0%), #e2e8f0 100%);
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: height 0.15s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.param-slider:hover,
+.param-slider:active {
+  height: 6px;
+  background: linear-gradient(to right, #FF3000 0%, #FF3000 var(--slider-pct, 0%), #cbd5e1 var(--slider-pct, 0%), #cbd5e1 100%);
+}
+
+/* WebKit Thumb */
+.param-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #64748b;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  cursor: grab;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.param-slider:hover::-webkit-slider-thumb,
+.param-slider:active::-webkit-slider-thumb {
+  transform: scale(1.3);
+  background: #FF3000;
+  box-shadow: 0 0 0 3px rgba(255, 48, 0, 0.22), 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: grabbing;
+}
+
+.param-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(255, 48, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Firefox Thumb */
+.param-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #64748b;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  cursor: grab;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.param-slider:hover::-moz-range-thumb,
+.param-slider:active::-moz-range-thumb {
+  transform: scale(1.3);
+  background: #FF3000;
+  box-shadow: 0 0 0 3px rgba(255, 48, 0, 0.22), 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: grabbing;
+}
+
+.param-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(255, 48, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Firefox Track & Progress */
+.param-slider::-moz-range-track {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  transition: height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.param-slider:hover::-moz-range-track,
+.param-slider:active::-moz-range-track {
+  height: 6px;
+  background: #cbd5e1;
+}
+
+.param-slider::-moz-range-progress {
+  height: 4px;
+  background: #94a3b8;
+  border-radius: 9999px;
+  transition: height 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.param-slider:hover::-moz-range-progress,
+.param-slider:active::-moz-range-progress {
+  height: 6px;
+  background: #FF3000;
+}
+
+/* Toque (celular/touch): trilho e thumb maiores para facilitar o arraste com o dedo. */
+@media (pointer: coarse) {
+  /* Alvos de toque confortaveis (>= 44px) em telas de toque, sem alterar o visual no desktop. */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .param-slider {
+    height: 8px;
+  }
+  .param-slider::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  .param-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  .param-slider::-moz-range-track {
+    height: 8px;
+  }
+  .param-slider::-moz-range-progress {
+    height: 8px;
+  }
+}
+
