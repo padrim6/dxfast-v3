@@ -1,0 +1,6 @@
+{
+  "name": "DXFAST",
+  "description": "Software de CAD paramétrico rápido DXFAST para geração e exportação de arquivos DXF industriais para corte e dobra de chapas metálicas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
